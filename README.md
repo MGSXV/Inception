@@ -36,4 +36,4 @@ patches: ``tail -f``, ``bash``, ``sleep infinity``, ``while true``.
 
 Here is an example diagram of the expected result:
 
-![alt text](imgs/example.png)
+![example diagram of the expected result](imgs/example.png)
