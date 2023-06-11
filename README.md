@@ -33,3 +33,7 @@ You set up a small infrastructure composed of different services under specific 
 used in entrypoint scripts.
 - The following are a few prohibited hacky
 patches: ``tail -f``, ``bash``, ``sleep infinity``, ``while true``.
+
+Here is an example diagram of the expected result:
+
+![alt text](imgs/example.png)
