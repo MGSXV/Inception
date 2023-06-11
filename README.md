@@ -19,14 +19,14 @@ You set up a small infrastructure composed of different services under specific 
 * In your WordPress database, there must be two users, one of them being the administrator. The administrator’s username can’t contain admin/Admin or administrator Administrator (e.g., admin, administrator, Administrator, admin-123, and so forth).
 * You have to configure your domain name so it points to your local IP address ( For 42Network this domain name must be [login].42.fr).
 
-### Restructions  🚫
+## Restructions  🚫
 * The latest tag is prohibited.
 * No password must be present in your Dockerfiles.
 * It is mandatory to use environment variables.
 * It is strongly recommended to use a .env file to store environment variables. The .env file should be located at the root of the srcs directory.
 * Your NGINX container must be the only entrypoint into your infrastructure via the port 443 only, using the TLSv1.2 or TLSv1.3 protocol.
 
-### Note  ⚠️
+## Note  ⚠️
 - Of course, using network: host or --link or links: is forbidden.
 - The network line must be present in your docker-compose.yml file.
 - Your containers musn’t be started with a command running an infinite loop. Thus, this also applies to any command used as entrypoint, or
