@@ -1,0 +1,17 @@
+services:
+  web-server:
+    container_name: nginx
+    build:
+      dockerfile: ./requirements/nginx/
+    ports:
+      - "8080:80"
+  website:
+    container_name: wp
+    build:
+      dockerfile:  ./requirements/WordPress/
+  database:
+    container_name: mariadb
+    build:
+      dockerfile: ./requirements/mariadb/
+    env_file:
+      - requirements/mariadb/.env
