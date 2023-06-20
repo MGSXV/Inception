@@ -1,0 +1,12 @@
+!#/usr/bin/expect -f
+
+set dbrootpass = $::env(DB_ROOT_PASSWORD)
+spawn mysql_secure_installation
+expect "Enter current password for root (enter for none):" {send "$dbrootpass"}
+expect "Change the root password? [Y/n]" {send "y"}
+expect "New password: " {send "$dbrootpass"}
+expect "Re-enter new password: " {send "$dbrootpass"}
+expect "Remove anonymous users? [Y/n]" {send "y"}
+expect "Disallow root login remotely? [Y/n]" {send "y"}
+expect "Remove test database and access to it? [Y/n]" {send "y"}
+expect "Reload privilege tables now? [Y/n]" {send "y"}
