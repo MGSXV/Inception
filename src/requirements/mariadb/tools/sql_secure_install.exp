@@ -10,3 +10,10 @@ expect -re {Remove anonymous users\?.*} {send "y\r"}
 expect -re {Disallow root login remotely\?.*} {send "y\r"}
 expect -re {Remove test database and access to it\?.*} {send "y\r"}
 expect -re {Reload privilege tables now\?.*} {send "y\r"}
+spawn mysql -u root -p
+expect -re {Enter password*} {send "$dbrootpass\r"}
+expect -re {MariaDB \[\(none\)\]*} {send "CREATE DATABASE wordpress;\r"}
+expect -re {MariaDB \[\(none\)\]*} {send "GRANT ALL PRIVILEGES ON wordpress.* to mgs@localhost identified by '$dbrootpass';\r"}
+expect -re {MariaDB \[\(none\)\]*} {send "FLUSH PRIVILEGES;\r"}
+expect -re {MariaDB \[\(none\)\]*} {send "QUIT;\r"}
+expect eof
