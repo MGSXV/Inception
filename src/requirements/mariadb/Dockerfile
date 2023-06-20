@@ -5,5 +5,5 @@ WORKDIR /home
 COPY ./tools/sql_secure_install.exp .
 COPY ./tools/init.sh .
 EXPOSE 3306
-ENTRYPOINT ["bash", "init.sh", ""] 
+ENTRYPOINT ["bash", "init.sh"] 
 CMD ["bash"]
