@@ -7,16 +7,52 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - "443:443"
-    # depends_on:
-    #   - website
-  # database:
-  #   container_name: mariadb
-  #   build:
-  #     context: ./requirements/mariadb
-  #     dockerfile: ./Dockerfile
-  #   env_file:
-  #     - requirements/mariadb/.env
-  # website:
-  #   container_name: wp
-  #   build: ./requirements/WordPress
-  #   dockerfile: ./Dockerfile
+    depends_on:
+      - website
+    volumes:
+      - wp:/var/www/html/sel-kham
+    networks:
+      - project
+  database:
+    container_name: mariadb
+    build:
+      context: ./requirements/mariadb
+      dockerfile: ./Dockerfile
+    env_file:
+      - requirements/mariadb/.env
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - wp:/var/lib/mysql
+    networks:
+      - project
+  website:
+    container_name: wp
+    build:
+      context: ./requirements/WordPress
+      dockerfile: ./Dockerfile
+    ports:
+      - "9000:9000"
+    volumes:
+      - wp:/var/www/html/sel-kham
+    networks:
+      - project
+networks:
+  project:
+    driver: bridge
+volumes:
+  wp:
+    name: wp
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER}/data/wp
+  db:
+    name: db
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER}/data/db
