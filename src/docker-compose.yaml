@@ -9,13 +9,13 @@ services:
       - "443:443"
     # depends_on:
     #   - website
-  database:
-    container_name: mariadb
-    build:
-      context: ./requirements/mariadb
-      dockerfile: ./Dockerfile
-    env_file:
-      - requirements/mariadb/.env
+  # database:
+  #   container_name: mariadb
+  #   build:
+  #     context: ./requirements/mariadb
+  #     dockerfile: ./Dockerfile
+  #   env_file:
+  #     - requirements/mariadb/.env
   # website:
   #   container_name: wp
   #   build: ./requirements/WordPress
