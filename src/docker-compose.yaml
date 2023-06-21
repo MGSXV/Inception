@@ -32,6 +32,8 @@ services:
     build:
       context: ./requirements/WordPress
       dockerfile: ./Dockerfile
+    env_file:
+      - requirements/WordPress/.env
     ports:
       - "9000:9000"
     volumes:
