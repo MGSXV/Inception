@@ -6,18 +6,20 @@ DC 			:= docker-compose.yaml
 all: $(SRC_DIR)/$(DC) up
 
 up: build
-	@docker-compose -f $(SRC_DIR)/$(DC) up
+	-@docker-compose -f $(SRC_DIR)/$(DC) up
 
 build:
-	@mkdir -p /home/${USER}/data/db
-	@mkdir -p /home/${USER}/data/wp
-	@docker-compose -f $(SRC_DIR)/$(DC) build
+	-@mkdir -p /home/${USER}/data/db
+	-@mkdir -p /home/${USER}/data/wp
+	-@docker-compose -f $(SRC_DIR)/$(DC) build
 
 down:
-	@docker-compose -f $(SRC_DIR)/$(DC) down
+	-@docker-compose -f $(SRC_DIR)/$(DC) down
 
 clean: down
-	@docker rmi -f $$(docker images -qa); docker volume rm $$(docker volume ls -q); docker system prune -af
-	@rm -rf /home/${USER}/data/
+	-@docker rmi -f $$(docker images -qa)
+	-@docker volume rm $$(docker volume ls -q)
+	-@docker system prune -af
+	-@sudo rm -rf /home/${USER}/data/
 
 re: clean all
