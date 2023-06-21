@@ -3,24 +3,23 @@ DC 			:= docker-compose.yaml
 
 .PHONY: all up down build re
 
-all: $(SRC_DIR)/$(DC) build
+all: $(SRC_DIR)/$(DC) up
+
+up: build
+	@docker-compose -f $(SRC_DIR)/$(DC) up
 
 build:
-	# @mkdir -p /home/${USER}/data/database
-	# @mkdir -p /home/${USER}/data/wordpress
-	# @mkdir -p /home/${USER}/data/webserver
+	@mkdir -p /home/${USER}/data/db
+	@mkdir -p /home/${USER}/data/wp
 	@docker-compose -f $(SRC_DIR)/$(DC) build
-
-up:
-	@docker-compose -f $(SRC_DIR)/$(DC) up
 
 down:
 	@docker-compose -f $(SRC_DIR)/$(DC) down
 
 clean: down
-	# @docker rmi -f $$(docker images -qa)
-	# @docker volume rm $$(docker volume ls -q)
+	@docker rmi -f $$(docker images -qa)
+	@docker volume rm $$(docker volume ls -q)
 	@docker system prune -af
-	# @rm -rf /home/${USER}/data/
+	@rm -rf /home/${USER}/data/
 
 re: clean all
