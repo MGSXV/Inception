@@ -1,4 +1,14 @@
+version: '3'
 services:
+  web-server:
+    container_name: nginx
+    build:
+      context: ./requirements/nginx
+      dockerfile: ./Dockerfile
+    ports:
+      - "443:443"
+    # depends_on:
+    #   - website
   database:
     container_name: mariadb
     build:
@@ -6,14 +16,7 @@ services:
       dockerfile: ./Dockerfile
     env_file:
       - requirements/mariadb/.env
-  # web-server:
-  #   container_name: nginx
-  #   build:
-  #     dockerfile: ./requirements/nginx/
-  #   ports:
-  #     - "8080:80"
   # website:
   #   container_name: wp
-  #   build:
-  #     dockerfile: ./requirements/WordPress/
-  
+  #   build: ./requirements/WordPress
+  #   dockerfile: ./Dockerfile
