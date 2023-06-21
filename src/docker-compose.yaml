@@ -21,10 +21,13 @@ services:
     env_file:
       - requirements/mariadb/.env
     restart: always
+    hostname: sel-kham.42
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "-uroot", "-pHello_W0rld#YouCantH4ckMe!!:)", "ping", "--silent"]
     volumes:
-      - wp:/var/lib/mysql
+      - db:/var/lib/mysql
     networks:
       - project
   website:
@@ -36,6 +39,9 @@ services:
       - requirements/WordPress/.env
     ports:
       - "9000:9000"
+    depends_on:
+      database: 
+        condition: service_healthy
     volumes:
       - wp:/var/www/html/sel-kham
     networks:
