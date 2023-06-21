@@ -13,7 +13,7 @@ mv wp-cli.phar /usr/local/bin/wp;
 cd /var/www/html/sel-kham;
 
 wp core download --allow-root;
-mv /var/www/wp-config.php /var/www/html/sel-kham;
+mv /tmp/wp-config.php /var/www/html/sel-kham;
 wp core install --allow-root --url=sel-kham.42.fr --title=${WORDPRESS_NAME} --admin_user=${WORDPRESS_ROOT_LOGIN} --admin_password=${DB_ROOT_PASSWORD} --admin_email=${WORDPRESS_ROOT_EMAIL};
 wp user create ${MYSQL_USER} ${WORDPRESS_USER_EMAIL} --user_pass=${MYSQL_PASSWORD} --role=author --allow-root;
 wp plugin update --all --allow-root

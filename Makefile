@@ -17,9 +17,7 @@ down:
 	@docker-compose -f $(SRC_DIR)/$(DC) down
 
 clean: down
-	@docker rmi -f $$(docker images -qa)
-	@docker volume rm $$(docker volume ls -q)
-	@docker system prune -af
+	@docker rmi -f $$(docker images -qa); docker volume rm $$(docker volume ls -q); docker system prune -af
 	@rm -rf /home/${USER}/data/
 
 re: clean all
