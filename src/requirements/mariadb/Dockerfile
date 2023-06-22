@@ -5,8 +5,8 @@ RUN apt install -y mariadb-server expect gettext-base procps
 WORKDIR /home
 COPY ./tools/sql_secure_install.exp .
 COPY ./tools/init.sh .
-COPY ./tools/50-server.cnf .
-COPY ./tools/create_db.sql .
+COPY ./conf/50-server.cnf .
+COPY ./conf/create_db.sql .
 EXPOSE 3306
 ENTRYPOINT [ "bash", "init.sh" ]
 CMD ["mysqld_safe"]
