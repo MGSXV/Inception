@@ -19,11 +19,8 @@ services:
       context: ./requirements/mariadb
       dockerfile: ./Dockerfile
     env_file:
-      - requirements/mariadb/.env
+      - .env
     restart: always
-    hostname: sel-kham.42
-    ports:
-      - "3306:3306"
     healthcheck:
       test: ["CMD", "mysqladmin", "-uroot", "-pHello_W0rld#YouCantH4ckMe!!:)", "ping", "--silent"]
     volumes:
@@ -36,9 +33,7 @@ services:
       context: ./requirements/WordPress
       dockerfile: ./Dockerfile
     env_file:
-      - requirements/WordPress/.env
-    ports:
-      - "9000:9000"
+      - .env
     depends_on:
       database: 
         condition: service_healthy

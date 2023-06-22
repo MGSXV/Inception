@@ -5,7 +5,7 @@ DC 			:= docker-compose.yaml
 
 all: $(SRC_DIR)/$(DC) up
 
-up: build
+up: 
 	-@docker-compose -f $(SRC_DIR)/$(DC) up
 
 build:
